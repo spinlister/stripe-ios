@@ -9,9 +9,9 @@
 #import "STPSofortSourceInfoDataSource.h"
 
 #import "NSArray+Stripe_BoundSafe.h"
-#import "STPLocalizationUtils.h"
-#import "STPPickerTableViewCell.h"
 #import "STPCountryPickerDataSource.h"
+#import "STPLocalizationUtils.h"
+#import "STPTextFieldTableViewCell.h"
 
 @implementation STPSofortSourceInfoDataSource
 
@@ -19,15 +19,18 @@
     self = [super initWithSourceParams:sourceParams];
     if (self) {
         self.title = STPLocalizedString(@"Sofort Info", @"Title for form to collect Sofort account info");
-        STPPickerTableViewCell *countryCell = [[STPPickerTableViewCell alloc] init];
-        countryCell.placeholder = STPLocalizedString(@"Country", @"Caption for Country field on bank info form");
-        NSArray *sofortCountries = @[@"AT", @"BE", @"FR", @"DE", @"NL"];
-        countryCell.pickerDataSource = [[STPCountryPickerDataSource alloc] initWithCountryCodes:sofortCountries];
-        NSDictionary *sofortDict = self.sourceParams.additionalAPIParameters[@"sofort"];
-        if (sofortDict) {
-            countryCell.contents = sofortDict[@"country"];
-        }
-        self.cells = @[countryCell];
+        self.title = STPLocalizedString(@"Sofort Info", @"Title for form to collect Sofort account info");
+        self.cells = @[];
+        
+        // TODO: country picker
+//        STPPickerTableViewCell *countryCell = [[STPPickerTableViewCell alloc] init];
+//        countryCell.placeholder = STPLocalizedString(@"Country", @"Caption for Country field on bank info form");
+//        NSArray *sofortCountries = @[@"AT", @"BE", @"FR", @"DE", @"NL"];
+//        countryCell.pickerDataSource = [[STPCountryPickerDataSource alloc] initWithCountryCodes:sofortCountries];
+//        NSDictionary *sofortDict = self.sourceParams.additionalAPIParameters[@"sofort"];
+//        if (sofortDict) {
+//            countryCell.contents = sofortDict[@"country"];
+//        }
     }
     return self;
 }
