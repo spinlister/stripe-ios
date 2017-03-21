@@ -42,12 +42,12 @@
                                 @"Van Lanschot": @"van_lanschot",
                                 };
         _bankNames = [[_bankNameToBankCode allKeys] sortedArrayUsingSelector:@selector(compare:)];
-        _selectedRow = 0;
+        _selectedRow = NSNotFound;
     }
     return self;
 }
 
-- (NSString *)title {
+- (NSString *)selectorTitle {
     return STPLocalizedString(@"Bank", @"Title for bank picker section");
 }
 

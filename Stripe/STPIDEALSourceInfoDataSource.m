@@ -51,11 +51,11 @@
     if (additionalParams[@"ideal"]) {
         idealDict = additionalParams[@"ideal"];
     }
-    STPTextFieldTableViewCell *bankCell = [self.cells stp_boundSafeObjectAtIndex:1];
-    idealDict[@"bank"] = bankCell.contents;
-    additionalParams[@"ideal"] = idealDict;
-    params.additionalAPIParameters = additionalParams;
-
+    // TODO: bank from selection
+//    STPTextFieldTableViewCell *bankCell = [self.cells stp_boundSafeObjectAtIndex:1];
+//    idealDict[@"bank"] = bankCell.contents;
+//    additionalParams[@"ideal"] = idealDict;
+//    params.additionalAPIParameters = additionalParams;
     NSString *name = params.owner[@"name"];
     NSString *bank = params.additionalAPIParameters[@"ideal"][@"bank"];
     if (name.length > 0 && bank.length > 0) {
