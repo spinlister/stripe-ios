@@ -9,7 +9,7 @@
 #import "STPIDEALSourceInfoDataSource.h"
 
 #import "NSArray+Stripe_BoundSafe.h"
-#import "STPBankPickerDataSource.h"
+#import "STPIDEALBankSelectorDataSource.h"
 #import "STPLocalizationUtils.h"
 #import "STPTextFieldTableViewCell.h"
 
@@ -18,22 +18,18 @@
 - (instancetype)initWithSourceParams:(STPSourceParams *)sourceParams {
     self = [super initWithSourceParams:sourceParams];
     if (self) {
-        self.title = STPLocalizedString(@"iDEAL Info", @"Title for form to collect iDEAL account info");
+        self.title = STPLocalizedString(@"Pay with iDEAL", @"Title for form to collect iDEAL account info");
         STPTextFieldTableViewCell *nameCell = [[STPTextFieldTableViewCell alloc] init];
         nameCell.placeholder = STPLocalizedString(@"Name", @"Caption for Name field on bank info form");
         if (self.sourceParams.owner) {
             nameCell.contents = self.sourceParams.owner[@"name"];
         }
         self.cells = @[nameCell];
-
-        // TODO: bank picker
-//        STPPickerTableViewCell *bankCell = [[STPPickerTableViewCell alloc] init];
-//        bankCell.placeholder = STPLocalizedString(@"Bank", @"Caption for Bank field on bank info form");
-//        bankCell.pickerDataSource = [STPBankPickerDataSource iDEALBankDataSource];
-//        NSDictionary *idealDict = self.sourceParams.additionalAPIParameters[@"ideal"];
-//        if (idealDict) {
-//            bankCell.contents = idealDict[@"bank"];
-//        }
+        self.selectorDataSource = [STPIDEALBankSelectorDataSource new];
+        NSDictionary *idealDict = self.sourceParams.additionalAPIParameters[@"ideal"];
+        if (idealDict) {
+            [self.selectorDataSource selectRowWithValue:idealDict[@"bank"]];
+        }
     }
     return self;
 }

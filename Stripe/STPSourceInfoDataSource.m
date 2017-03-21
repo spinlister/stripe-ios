@@ -8,6 +8,8 @@
 
 #import "STPSourceInfoDataSource.h"
 
+#import "STPSelectorDataSource.h"
+
 @implementation STPSourceInfoDataSource
 
 - (instancetype)initWithSourceParams:(STPSourceParams *)sourceParams {

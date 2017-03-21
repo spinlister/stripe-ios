@@ -17,7 +17,7 @@
 - (instancetype)initWithSourceParams:(STPSourceParams *)sourceParams {
     self = [super initWithSourceParams:sourceParams];
     if (self) {
-        self.title = STPLocalizedString(@"Giropay Info", @"Title for form to collect Giropay account info");
+        self.title = STPLocalizedString(@"Pay with Giropay", @"Title for form to collect Giropay account info");
         STPTextFieldTableViewCell *nameCell = [[STPTextFieldTableViewCell alloc] init];
         nameCell.placeholder = STPLocalizedString(@"Name", @"Caption for Name field on bank info form");
         if (self.sourceParams.owner) {

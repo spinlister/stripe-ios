@@ -9,7 +9,7 @@
 import UIKit
 import Stripe
 
-class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
+class CheckoutViewController: UIViewController, STPPaymentContextDelegate, STPSourceInfoViewControllerDelegate {
 
     // 1) To get started with this demo, first head to https://dashboard.stripe.com/account/apikeys
     // and copy your "Test Publishable Key" (it looks like pk_test_abcdef) into the line below.
@@ -148,14 +148,23 @@ class CheckoutViewController: UIViewController, STPPaymentContextDelegate {
             params.type = .IDEAL
             if let vc = STPSourceInfoViewController(sourceParams: params,
                                                     theme: strongSelf.theme) {
+                vc.delegate = self
                 strongSelf.navigationController?.pushViewController(vc, animated: true)
             }
-            
+
 //            self?.paymentContext.pushPaymentMethodsViewController()
         }
         self.shippingRow.onTap = { [weak self] _ in
             self?.paymentContext.pushShippingViewController()
         }
+    }
+
+    func sourceInfoViewControllerDidCancel(_ sourceInfoViewController: STPSourceInfoViewController) {
+        self.navigationController?.popViewController(animated: true)
+    }
+
+    func sourceInfoViewController(_ sourceInfoViewController: STPSourceInfoViewController, didFinishWith sourceParams: STPSourceParams) {
+        
     }
 
     override func viewDidLayoutSubviews() {

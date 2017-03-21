@@ -8,7 +8,7 @@
 
 #import <Stripe/Stripe.h>
 
-@protocol STPPickerDataSource;
+@protocol STPSelectorDataSource;
 @class STPTextFieldTableViewCell;
 
 @interface STPSourceInfoDataSource : NSObject
@@ -16,7 +16,7 @@
 @property(nonatomic)NSString *title;
 @property(nonatomic)STPSourceParams *sourceParams;
 @property(nonatomic)NSArray<STPTextFieldTableViewCell *>*cells;
-@property(nonatomic)id<STPPickerDataSource>pickerDataSource;
+@property(nonatomic)id<STPSelectorDataSource>selectorDataSource;
 
 - (instancetype)initWithSourceParams:(STPSourceParams *)sourceParams;
 - (STPSourceParams *)completeSourceParams;
