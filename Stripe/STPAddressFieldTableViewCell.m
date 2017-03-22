@@ -361,16 +361,16 @@
 #pragma mark - UIPickerView
 
 - (void)pickerView:(__unused UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(__unused NSInteger)component {
-    self.ourCountryCode = [self.countryPickerDataSource valueForRow:row];
+    self.ourCountryCode = [self.countryPickerDataSource pickerValueForRow:row];
     self.contents = self.ourCountryCode;
-    self.textField.text = [self.countryPickerDataSource titleForRow:row];
+    self.textField.text = [self.countryPickerDataSource pickerTitleForRow:row];
     if ([self.delegate respondsToSelector:@selector(addressFieldTableViewCountryCode)]) {
         self.delegate.addressFieldTableViewCountryCode = self.ourCountryCode;
     }
 }
 
 - (NSString *)pickerView:(__unused UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(__unused NSInteger)component {
-    return [self.countryPickerDataSource titleForRow:row];
+    return [self.countryPickerDataSource pickerTitleForRow:row];
 }
 
 - (NSInteger)numberOfComponentsInPickerView:(__unused UIPickerView *)pickerView {
@@ -378,7 +378,7 @@
 }
 
 - (NSInteger)pickerView:(__unused UIPickerView *)pickerView numberOfRowsInComponent:(__unused NSInteger)component {
-    return [self.countryPickerDataSource numberOfRows];
+    return [self.countryPickerDataSource numberOfRowsInPicker];
 }
 
 @end
