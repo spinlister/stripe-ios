@@ -47,7 +47,7 @@
     return self;
 }
 
-- (NSString *)selectorTitle {
+- (NSString *)title {
     return STPLocalizedString(@"Bank", @"Title for bank picker section");
 }
 

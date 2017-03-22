@@ -39,25 +39,16 @@
     if (additionalParams[@"sofort"]) {
         sofortDict = additionalParams[@"sofort"];
     }
-<<<<<<< HEAD
-    STPTextFieldTableViewCell *countryCell = [self.cells stp_boundSafeObjectAtIndex:0];
-    sofortDict[@"country"] = countryCell.contents;
-    additionalParams[@"sofort"] = sofortDict;
-    params.additionalAPIParameters = additionalParams;
-
-    NSString *country = params.additionalAPIParameters[@"sofort"][@"country"];
-    if (country.length > 0) {
-        return params;
-    }
-    return nil;
-=======
     // TODO: country from selection
 //    STPTextFieldTableViewCell *countryCell = [self.cells stp_boundSafeObjectAtIndex:0];
 //    sofortDict[@"country"] = countryCell.contents;
 //    additionalParams[@"sofort"] = sofortDict;
 //    params.additionalAPIParameters = additionalParams;
-    return params;
->>>>>>> wip
+    NSString *country = params.additionalAPIParameters[@"sofort"][@"country"];
+    if (country.length > 0) {
+        return params;
+    }
+    return nil;
 }
 
 @end
