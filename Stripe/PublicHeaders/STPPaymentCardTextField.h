@@ -140,7 +140,7 @@
 /**
  *  This behaves identically to setting the inputView for each child text field.
  */
-@property(nonatomic, weak, readwrite, nullable) UIView *inputView;
+@property(nonatomic, strong, nullable) UIView *inputView;
 
 /**
  *  The curent brand image displayed in the receiver.
