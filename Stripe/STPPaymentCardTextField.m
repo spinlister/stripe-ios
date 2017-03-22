@@ -304,6 +304,13 @@ CGFloat const STPPaymentCardTextFieldDefaultPadding = 13;
     }
 }
 
+- (void)setInputView:(UIView *)inputView {
+    _inputView = inputView;
+    for (STPFormTextField *field in [self allFields]) {
+        field.inputView = inputView;
+    }
+}
+
 #pragma mark UIControl
 
 - (void)setEnabled:(BOOL)enabled {
