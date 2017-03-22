@@ -71,6 +71,7 @@
 /**
  Note that this only includes SEPA countries. IBANs from non-SEPA countries are 
  considered invalid.
+ Source: https://bfsfcu.org/pdf/IBAN.pdf
  */
 + (NSDictionary<NSString*,NSNumber*>*)countryCodeToBBANLength {
     return @{
@@ -161,8 +162,12 @@
     }
     STPParsedIBAN *iban = [[STPParsedIBAN alloc] initWithString:string];
     NSString *prefix = [iban.countryCode stringByAppendingString:iban.checkDigits];
+    // Move the four initial characters to the end of the string
     NSString *rearranged = [iban.bban stringByAppendingString:prefix];
+    // Replace each letter in the string with two digits
     NSString *digits = [[self class] stringByReplacingLettersWithDigits:rearranged];
+    // Compute digits mod 97, using a piecewise algorithm
+    // https://en.wikipedia.org/wiki/International_Bank_Account_Number#Modulo_operation_on_IBAN
     NSString *currentDigits = [digits stp_safeSubstringToIndex:9];
     NSString *remainingDigits = [digits stp_safeSubstringFromIndex:9];
     NSUInteger remainder = 0;
